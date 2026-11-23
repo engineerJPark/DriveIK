@@ -787,7 +787,8 @@ class CurriculumEpochSampler(torch.utils.data.Sampler):
             seed: Base seed of the shuffling generator.
             shuffle: Shuffle within each pass over the dataset.
         """
-        super().__init__(dataset)
+        # torch >= 2.10 removed Sampler.__init__(data_source); the argument was ignored before.
+        super().__init__()
         self.dataset = dataset
         self.model = model
         self.seed = int(seed)
